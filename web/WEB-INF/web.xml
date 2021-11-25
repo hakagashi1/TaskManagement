@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>LoginControl</servlet-name>
+        <servlet-class>controller.LoginControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterControl</servlet-name>
+        <servlet-class>controller.RegisterControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeControl</servlet-name>
+        <servlet-class>controller.HomeControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginControl</servlet-name>
+        <url-pattern>/pages/samples/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterControl</servlet-name>
+        <url-pattern>/pages/samples/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeControl</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
