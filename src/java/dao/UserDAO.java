@@ -8,6 +8,8 @@ package dao;
 import entity.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
@@ -27,12 +29,12 @@ public class UserDAO extends DBContext {
                 u.setId(rs.getInt("id"));
                 return u;
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
         return null;
     }
-    
+
     public User checkUserExist(String username, String password) {
         String sql = "select * from dbo.[User]\n"
                 + "where username = ? and password = ?;";
@@ -53,15 +55,15 @@ public class UserDAO extends DBContext {
                 u.setEmail(rs.getString("email"));
                 u.setMobile(rs.getString("mobile"));
                 u.setIntro(rs.getString("intro"));
-                
+                u.setProfile(rs.getString("profile"));
                 return u;
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
         return null;
     }
-    
+
     public User checkEmailExist(String email) {
         String sql = "select * from dbo.[User]\n"
                 + "where email = ?;";
@@ -74,7 +76,7 @@ public class UserDAO extends DBContext {
                 u.setId(rs.getInt("id"));
                 return u;
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
         return null;
@@ -102,9 +104,44 @@ public class UserDAO extends DBContext {
             System.out.println(e);
         }
     }
+
+    public String convertMili(long milliSeconds) {
+        String dateFormat = "dd-MM-yyyy hh:mm a";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(milliSeconds);
+        return convertDateTime(simpleDateFormat.format(calendar.getTime()));
+    }
     
+    public String convertDateTime(String time) {
+        String[] dt = time.split(" ");
+        if (dt[2].equalsIgnoreCase("CH")) {
+            String[] hh = dt[1].split(":");
+            int h = Integer.parseInt(hh[0]) + 12;
+            int m = Integer.parseInt(hh[1]);
+            return dt[0] + " " + h + ":" + m;
+        } else {
+            return dt[0] + " " + dt[1];
+        }
+    }
+    
+    public void setLastLogin(int userId) {
+        String sql = "update dbo.[user]\n"
+                + "set lastLogin = getdate(),\n"
+                + "where id = ?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public static void main(String[] args) {
         UserDAO u = new UserDAO();
-        System.out.println(u.checkEmailExist("baa@gmail.com"));
+//        u.setLastLogin("25-11-2021 10:04 CH", 1);
+//        System.out.println(u.checkUserExist("aaa", "aaa"));
+        System.out.println(u.convertDateTime("25-11-2021 10:04 CH"));
     }
 }

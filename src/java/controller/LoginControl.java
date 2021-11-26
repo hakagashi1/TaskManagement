@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.UserDAO;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -64,7 +65,7 @@ public class LoginControl extends HttpServlet {
         if (user == null) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
-            response.sendRedirect("home");
+            response.sendRedirect("../../home");
         }
     }
 
@@ -79,7 +80,17 @@ public class LoginControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        User user = new UserDAO().checkUserExist(username, password);
+        if (user != null) {
+            response.sendRedirect("../../home");
+            HttpSession session = request.getSession();
+            session.setAttribute("acc", user);
+        } else {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
     }
 
     /**

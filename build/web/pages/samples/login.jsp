@@ -4,6 +4,7 @@
     Author     : ZenBook
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,16 +38,16 @@
                                 </div>
                                 <h4>Hello! let's get started</h4>
                                 <h6 class="font-weight-light">Sign in to continue.</h6>
-                                <form class="pt-3">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="mt-3">
-                                        <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a>
-                                    </div>
+                                <form class="pt-3" action="login" method="post">
+                                        <div class="form-group">
+                                            <input type="text" name="username" class="form-control form-control-lg" placeholder="Username">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
+                                        </div>
+                                        <div class="mt-3">
+                                            <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">SIGN UP</button>
+                                        </div>
                                     <div class="my-2 d-flex justify-content-between align-items-center">
                                         <div class="form-check">
                                             <label class="form-check-label text-muted">

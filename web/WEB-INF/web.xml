@@ -12,6 +12,14 @@
         <servlet-name>HomeControl</servlet-name>
         <servlet-class>controller.HomeControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutControl</servlet-name>
+        <servlet-class>controller.LogoutControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateProjectControl</servlet-name>
+        <servlet-class>controller.CreateProjectControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/pages/samples/login</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutControl</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateProjectControl</servlet-name>
+        <url-pattern>/create-project</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -5,13 +5,10 @@
  */
 package controller;
 
-import dao.ActionDAO;
 import dao.UserDAO;
-import entity.Action;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ZenBook
  */
-public class HomeControl extends HttpServlet {
+public class CreateProjectControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,16 +33,7 @@ public class HomeControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        List<Action> p = new ActionDAO().getActionByGroupId(1);
-        request.setAttribute("projectAction", p);
-        List<Action> u = new ActionDAO().getActionByGroupId(2);
-        request.setAttribute("userAction", u);
-        List<Action> t = new ActionDAO().getActionByGroupId(3);
-        request.setAttribute("taskAction", t);
-        List<Action> b = new ActionDAO().getActionByGroupId(4);
-        request.setAttribute("bugAction", b);
-        List<Action> c = new ActionDAO().getActionByGroupId(5);
-        request.setAttribute("commentAction", c);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,7 +48,7 @@ public class HomeControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("acc");
         if (user == null) {
@@ -68,7 +56,7 @@ public class HomeControl extends HttpServlet {
         } else {
             request.setAttribute("user", user);
             System.out.println(new UserDAO().convertMili(session.getLastAccessedTime()));
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("createProject.jsp").forward(request, response);
         }
     }
 
@@ -83,8 +71,7 @@ public class HomeControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        
+        processRequest(request, response);
     }
 
     /**

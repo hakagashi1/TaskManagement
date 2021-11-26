@@ -186,7 +186,6 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </div>\n");
       out.write("                        </li>\n");
       out.write("                    </ul>\n");
-      out.write("                    <button type=\"button\" class=\"btn btn-light\">Login</button>\n");
       out.write("                    <button title=\"menu\" class=\"navbar-toggler navbar-toggler-right d-lg-none align-self-center\" type=\"button\" data-toggle=\"offcanvas\">\n");
       out.write("                        <span class=\"typcn typcn-th-menu\"></span>\n");
       out.write("                    </button>\n");

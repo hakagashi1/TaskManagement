@@ -36,7 +36,6 @@ public class RoleDAO extends DBContext{
     }
     
     public Role getRoleById(int id) {
-        List<Role> list = new ArrayList<>();
         String sql = "SELECT * FROM Role where id = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -46,7 +45,7 @@ public class RoleDAO extends DBContext{
                 Role role = new Role();
                 role.setId(rs.getInt("id"));
                 role.setRole(rs.getString("role"));
-                list.add(role);
+                return role;
             }
         } catch (Exception e) {
             System.err.print(e);
@@ -57,5 +56,6 @@ public class RoleDAO extends DBContext{
     public static void main(String[] args) {
         RoleDAO r = new RoleDAO();
         System.out.println(r.getAllRoles());
+        System.out.println(r.getRoleById(3));
     }
 }

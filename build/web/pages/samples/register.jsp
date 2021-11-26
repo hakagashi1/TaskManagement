@@ -142,7 +142,7 @@
                             <button type="submit" class="btn btn-primary mr-2">SIGN UP</button>
                         </div>
                         <div class="text-center mt-4 font-weight-light">
-                            Already have an account? <a href="login.html" class="text-primary">Login</a>
+                            Already have an account? <a href="login" class="text-primary">Login</a>
                         </div>
                     </div>
                 </div>
