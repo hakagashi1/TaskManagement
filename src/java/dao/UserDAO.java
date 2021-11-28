@@ -9,13 +9,116 @@ import entity.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  *
  * @author ZenBook
  */
 public class UserDAO extends DBContext {
+
+    public List<User> getAllUsers() {
+        List<User> list = new ArrayList<>();
+        String sql = "SELECT * FROM dbo.[User]";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setRole(new RoleDAO().getRoleById(rs.getInt("roleId")));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setFirstname(rs.getString("firstName"));
+                u.setMiddlename(rs.getString("middleName"));
+                u.setLastname(rs.getString("lastName"));
+                u.setEmail(rs.getString("email"));
+                u.setMobile(rs.getString("mobile"));
+                u.setIntro(rs.getString("intro"));
+                u.setProfile(rs.getString("profile"));
+                list.add(u);
+            }
+        } catch (Exception e) {
+            System.err.print(e);
+        }
+        return list;
+    }
+
+    public List<User> getMembersByTeamId(int teamId) {
+        List<User> list = new ArrayList<>();
+        String sql = "select \n"
+                + "	u.id,\n"
+                + "	u.roleId,\n"
+                + "	u.username,\n"
+                + "	u.password,\n"
+                + "	u.firstName,\n"
+                + "	u.middleName,\n"
+                + "	u.lastName,\n"
+                + "	u.avatar,\n"
+                + "	u.email,\n"
+                + "	u.mobile,\n"
+                + "	u.registerAt,\n"
+                + "	u.lastLogin,\n"
+                + "	u.intro,\n"
+                + "	u.profile\n"
+                + "from dbo.[User] u inner join Team_User tu\n"
+                + "	on u.id = tu.userId\n"
+                + "	inner join Team t\n"
+                + "	on tu.teamId = t.id\n"
+                + "where t.id = ?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, teamId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setRole(new RoleDAO().getRoleById(rs.getInt("roleId")));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setFirstname(rs.getString("firstName"));
+                u.setMiddlename(rs.getString("middleName"));
+                u.setLastname(rs.getString("lastName"));
+                u.setEmail(rs.getString("email"));
+                u.setMobile(rs.getString("mobile"));
+                u.setIntro(rs.getString("intro"));
+                u.setProfile(rs.getString("profile"));
+                list.add(u);
+            }
+        } catch (Exception e) {
+            System.err.print(e);
+        }
+        return list;
+    }
+    
+    public User getUserById(int id) {
+        String sql = "select * from dbo.[User]\n"
+                + "where id = ?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));u.setRole(new RoleDAO().getRoleById(rs.getInt("roleId")));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setFirstname(rs.getString("firstName"));
+                u.setMiddlename(rs.getString("middleName"));
+                u.setLastname(rs.getString("lastName"));
+                u.setEmail(rs.getString("email"));
+                u.setMobile(rs.getString("mobile"));
+                u.setIntro(rs.getString("intro"));
+                u.setProfile(rs.getString("profile"));
+                return u;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 
     public User checkUsernameExist(String username) {
         String sql = "select * from dbo.[User]\n"
@@ -112,7 +215,7 @@ public class UserDAO extends DBContext {
         calendar.setTimeInMillis(milliSeconds);
         return convertDateTime(simpleDateFormat.format(calendar.getTime()));
     }
-    
+
     public String convertDateTime(String time) {
         String[] dt = time.split(" ");
         if (dt[2].equalsIgnoreCase("CH")) {
@@ -124,7 +227,7 @@ public class UserDAO extends DBContext {
             return dt[0] + " " + dt[1];
         }
     }
-    
+
     public void setLastLogin(int userId) {
         String sql = "update dbo.[user]\n"
                 + "set lastLogin = getdate(),\n"

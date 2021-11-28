@@ -20,6 +20,22 @@
         <servlet-name>CreateProjectControl</servlet-name>
         <servlet-class>controller.CreateProjectControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManageProjectControl</servlet-name>
+        <servlet-class>controller.ManageProjectControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>manageUser</servlet-name>
+        <servlet-class>controller.manageUserControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddTeamControl</servlet-name>
+        <servlet-class>controller.AddTeamControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageTeamControl</servlet-name>
+        <servlet-class>controller.ManageTeamControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/pages/samples/login</url-pattern>
@@ -37,8 +53,24 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>manageUser</servlet-name>
+        <url-pattern>/pages/user/manage-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageProjectControl</servlet-name>
+        <url-pattern>/pages/project/manage-project</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CreateProjectControl</servlet-name>
-        <url-pattern>/create-project</url-pattern>
+        <url-pattern>/pages/project/create-project</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTeamControl</servlet-name>
+        <url-pattern>/add-team</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageTeamControl</servlet-name>
+        <url-pattern>/manage-team</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

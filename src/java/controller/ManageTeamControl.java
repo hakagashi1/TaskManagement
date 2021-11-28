@@ -5,24 +5,19 @@
  */
 package controller;
 
-import dao.ActionDAO;
-import dao.UserDAO;
-import entity.Action;
-import entity.User;
+import dao.TeamDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ZenBook
  */
-public class HomeControl extends HttpServlet {
+public class ManageTeamControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,6 +31,18 @@ public class HomeControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ManageTeamControl</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ManageTeamControl at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,16 +57,11 @@ public class HomeControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("acc");
-        if (user == null) {
-            response.sendRedirect("pages/samples/login");
-        } else {
-            request.setAttribute("user", user);
-            System.out.println(new UserDAO().convertMili(session.getLastAccessedTime()));
-            request.getRequestDispatcher("home.jsp").forward(request, response);
-        }
+//        processRequest(request, response);
+        int teamId = Integer.parseInt(request.getParameter("teamId"));
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        new TeamDAO().deleteMember(teamId, userId);
+        response.sendRedirect("pages/user/manage-user");
     }
 
     /**
@@ -74,7 +76,12 @@ public class HomeControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        
+        int teamId = Integer.parseInt(request.getParameter("teamId"));
+        System.out.println(teamId);
+        int userId = Integer.parseInt(request.getParameter("member-id"));
+        System.out.println(userId);
+        new TeamDAO().addMember(teamId, userId);
+        response.sendRedirect("pages/user/manage-user");
     }
 
     /**

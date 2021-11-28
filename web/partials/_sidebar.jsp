@@ -1,3 +1,23 @@
+<%-- 
+    Document   : _sidebar
+    Created on : Nov 26, 2021, 5:43:41 PM
+    Author     : ZenBook
+--%>
+
+<%@page import="dao.ActionDAO"%>
+<%@page import="entity.Action"%>
+<%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    List<Action> projectAction = new ActionDAO().getActionByGroupId(1);
+    List<Action> userAction = new ActionDAO().getActionByGroupId(2);
+    List<Action> taskAction = new ActionDAO().getActionByGroupId(3);
+    List<Action> bugAction = new ActionDAO().getActionByGroupId(4);
+    List<Action> commentAction = new ActionDAO().getActionByGroupId(5);
+%>
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
@@ -7,7 +27,7 @@
                     <span class="sidebar-status-indicator"></span>
                 </div>
                 <div class="sidebar-profile-name">
-                    <p class="sidebar-name">Kenneth Osborne</p>
+                    <p class="sidebar-name">${user.firstname} ${user.lastname}</p>
                     <p class="sidebar-designation">Welcome</p>
                 </div>
             </div>
@@ -24,7 +44,7 @@
             <p class="sidebar-menu-title">Dash menu</p>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="home.html">
+            <a class="nav-link" href="home">
                 <i class="typcn typcn-device-desktop menu-icon"></i>
                 <span class="menu-title">Dashboard <span class="badge badge-primary ml-3">New</span></span>
             </a>
@@ -37,8 +57,9 @@
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Create</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Manage</a></li>
+                    <c:forEach items="<%=projectAction%>" var="p">
+                        <li class="nav-item"> <a class="nav-link" href="${p.name.toLowerCase()}-project">${p.name}</a></li>
+                        </c:forEach>
                 </ul>
             </div>
         </li>
@@ -50,7 +71,9 @@
             </a>
             <div class="collapse" id="form-elements">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="#">Manage</a></li>
+                    <c:forEach items="<%=userAction%>" var="u">
+                        <li class="nav-item"> <a class="nav-link" href="pages/user/${u.name.toLowerCase()}-user">${u.name}</a></li>
+                        </c:forEach>
                 </ul>
             </div>
         </li>
@@ -62,9 +85,9 @@
             </a>
             <div class="collapse" id="charts">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Create</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">View</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Manage</a></li>
+                    <c:forEach items="<%=taskAction%>" var="u">
+                        <li class="nav-item"> <a class="nav-link" href="${u.name.toLowerCase()}-task">${u.name}</a></li>
+                        </c:forEach>
                 </ul>
             </div>
         </li>
@@ -76,8 +99,9 @@
             </a>
             <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Manage</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Change Status</a></li>
+                    <c:forEach items="<%=bugAction%>" var="u">
+                        <li class="nav-item"> <a class="nav-link" href="${u.name.toLowerCase()}-bug">${u.name}</a></li>
+                        </c:forEach>
                 </ul>
             </div>
         </li>
@@ -89,7 +113,9 @@
             </a>
             <div class="collapse" id="icons">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Add</a></li>
+                    <c:forEach items="<%=commentAction%>" var="u">
+                        <li class="nav-item"> <a class="nav-link" href="${u.name.toLowerCase()}-comment">${u.name}</a></li>
+                        </c:forEach>
                 </ul>
             </div>
         </li>
