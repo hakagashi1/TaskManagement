@@ -63,11 +63,8 @@ public class AddTeamControl extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         String name = request.getParameter("name");
-        System.out.println(name);
         int leaderId = Integer.parseInt(request.getParameter("leaderId"));
-        System.out.println(leaderId);
         String details = request.getParameter("details");
-        System.out.println(details);
         
         new TeamDAO().addTeam(name, leaderId, details);
         response.sendRedirect("pages/user/manage-user");

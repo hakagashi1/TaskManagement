@@ -1,6 +1,6 @@
 <%-- 
-    Document   : manageProject
-    Created on : Nov 27, 2021, 9:43:30 AM
+    Document   : manageTask
+    Created on : Nov 28, 2021, 7:01:10 PM
     Author     : ZenBook
 --%>
 
@@ -212,7 +212,7 @@
                             <div class="collapse" id="ui-basic">
                                 <ul class="nav flex-column sub-menu">
                                     <c:forEach items="<%=projectAction%>" var="p">
-                                        <li class="nav-item"> <a class="nav-link" href="${p.name.toLowerCase()}-project">${p.name}</a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="pages/project/${p.name.toLowerCase()}-project">${p.name}</a></li>
                                         </c:forEach>
                                 </ul>
                             </div>
@@ -348,9 +348,7 @@
                                                                 <div class="font-weight-bold  mt-1">${p.plannedEndDate}</div>
                                                             </td>
                                                             <td>
-                                                                <a href="single-project?id=${p.id}">
-                                                                    <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
-                                                                </a>
+                                                                <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
@@ -459,9 +457,7 @@
                                                                 <div class="font-weight-bold  mt-1">${p.plannedEndDate}</div>
                                                             </td>
                                                             <td>
-                                                                <a href="single-project?id=${p.id}">
-                                                                    <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
-                                                                </a>
+                                                                <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>

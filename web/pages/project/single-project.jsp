@@ -1,6 +1,6 @@
 <%-- 
-    Document   : manageProject
-    Created on : Nov 27, 2021, 9:43:30 AM
+    Document   : single-project
+    Created on : Nov 28, 2021, 7:11:23 PM
     Author     : ZenBook
 --%>
 
@@ -18,7 +18,11 @@
         <link rel="stylesheet" href="../../vendors/typicons.font/font/typicons.css">
         <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
         <!-- end inject -->
+        <!-- inject:css -->
+        <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
         <!-- plugin css for this page -->
+        <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+        <link href="../../vendors/mdi/css/materialdesignicons.min.css" rel="stylesheet" type="text/css"/>
         <!-- End plugin css for this page -->
         <!-- inject:css -->
         <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
@@ -212,7 +216,7 @@
                             <div class="collapse" id="ui-basic">
                                 <ul class="nav flex-column sub-menu">
                                     <c:forEach items="<%=projectAction%>" var="p">
-                                        <li class="nav-item"> <a class="nav-link" href="${p.name.toLowerCase()}-project">${p.name}</a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="pages/project/${p.name.toLowerCase()}-project">${p.name}</a></li>
                                         </c:forEach>
                                 </ul>
                             </div>
@@ -315,50 +319,60 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12 d-flex grid-margin stretch-card">
+                            <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="d-flex flex-wrap justify-content-between">
-                                            <h4 class="card-title mb-3">Team Project</h4>
-                                        </div>
+                                        <h4 class="card-title">Striped Table</h4>
+                                        <p class="card-description">
+                                            Add class <code>.table-striped</code>
+                                        </p>
                                         <div class="table-responsive">
-                                            <table class="table">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Task
+                                                        </th>
+                                                        <th>
+                                                            User
+                                                        </th>
+                                                        <th>
+                                                            Name
+                                                        </th>
+                                                        <th>
+                                                            Progress
+                                                        </th>
+                                                        <th>
+                                                            Deadline
+                                                        </th>
+                                                    </tr>
+                                                </thead>
                                                 <tbody>
-                                                    <c:forEach items="${listTeam}" var="p">
+                                                    <c:forEach items="${listT}" var="t">
                                                         <tr>
                                                             <td>
-                                                                ID
-                                                                <div class="font-weight-bold  mt-1">${p.id} </div>
+                                                                ${t.title}
+                                                            </td>
+                                                            <td class="py-1">
+                                                                <img src="../../images/faces/face7.jpg" alt="image"/>
                                                             </td>
                                                             <td>
-                                                                <div class="d-flex">
-                                                                    <img class="img-sm rounded-circle mb-md-0 mr-2" src="../../images/faces/face30.png" alt="profile image">
-                                                                    <div>
-                                                                        <div> Team</div>
-                                                                        <div class="font-weight-bold mt-1">${p.title}</div>
-                                                                    </div>
+                                                                ${t.user.firstname} ${t.user.lastname}
+                                                            </td>
+                                                            <td>
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: ${t.status}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                Status
-                                                                <div class="font-weight-bold text-success  mt-1">${p.status}% </div>
-                                                            </td>
-                                                            <td>
-                                                                Deadline
-                                                                <div class="font-weight-bold  mt-1">${p.plannedEndDate}</div>
-                                                            </td>
-                                                            <td>
-                                                                <a href="single-project?id=${p.id}">
-                                                                    <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
-                                                                </a>
+                                                                ${t.plannedEndDate}
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
                                                 </tbody>
                                             </table>
-
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-dark btn-icon-text" data-toggle="modal" data-target="#exampleModalLong1">
+                                            <button type="button" class="btn btn-primary btn-rounded btn-icon" data-toggle="modal" data-target="#exampleModalLong1">
                                                 +
                                             </button>
 
@@ -368,14 +382,14 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">
-                                                                Add New Project
+                                                                Add New Task
                                                             </h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
 
-                                                        <form action="../../add-project" method="post">
+                                                        <form action="../../add-task" method="post">
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="title" class="col-form-label">
@@ -384,121 +398,10 @@
                                                                     <input type="text" class="form-control" id="product-name" name="title">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="team-id" class="col-form-label">
-                                                                        Team ID:
+                                                                    <label for="user-id" class="col-form-label">
+                                                                        User ID:
                                                                     </label>
-                                                                    <input type="text" class="form-control" id="product-name" name="teamId">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="start-date" class="col-form-label">
-                                                                        Start date:
-                                                                    </label>
-                                                                    <input type="text" class="form-control" id="product-name" name="start-date">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="end-date" class="col-form-label">
-                                                                        End date:
-                                                                    </label>
-                                                                    <input type="text" class="form-control" id="product-name" name="end-date">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="description" class="col-form-label">
-                                                                        Description:
-                                                                    </label>
-                                                                    <textarea class="form-control" id="product-details" name="description"></textarea>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">  
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
-                                                                    Cancel
-                                                                </button>
-                                                                <button type="submit" class="btn btn-primary" value="Add">
-                                                                    Add
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 d-flex grid-margin stretch-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex flex-wrap justify-content-between">
-                                            <h4 class="card-title mb-3">Single Project</h4>
-                                        </div>
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <tbody>
-                                                    <c:forEach items="${listSingle}" var="p">
-                                                        <tr>
-                                                            <td>
-                                                                ID
-                                                                <div class="font-weight-bold  mt-1">${p.id} </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex">
-                                                                    <img class="img-sm rounded-circle mb-md-0 mr-2" src="../../images/faces/face30.png" alt="profile image">
-                                                                    <div>
-                                                                        <div> Team</div>
-                                                                        <div class="font-weight-bold mt-1">${p.title}</div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                Status
-                                                                <div class="font-weight-bold text-success  mt-1">${p.status}% </div>
-                                                            </td>
-                                                            <td>
-                                                                Deadline
-                                                                <div class="font-weight-bold  mt-1">${p.plannedEndDate}</div>
-                                                            </td>
-                                                            <td>
-                                                                <a href="single-project?id=${p.id}">
-                                                                    <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </c:forEach>
-                                                </tbody>
-                                            </table>
-
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-dark btn-icon-text" data-toggle="modal" data-target="#exampleModalLong2">
-                                                +
-                                            </button>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                                Add New Project
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-
-                                                        <form action="../../add-project" method="post">
-                                                            <div class="modal-body">
-                                                                <div class="form-group">
-                                                                    <label for="title" class="col-form-label">
-                                                                        Title:
-                                                                    </label>
-                                                                    <input type="text" class="form-control" id="product-name" name="title">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="team-id" class="col-form-label">
-                                                                        Team ID:
-                                                                    </label>
-                                                                    <input type="text" class="form-control" id="product-name" name="teamId">
+                                                                    <input type="text" class="form-control" id="product-name" name="userId">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="start-date" class="col-form-label">

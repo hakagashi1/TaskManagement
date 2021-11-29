@@ -212,7 +212,7 @@
                             <div class="collapse" id="ui-basic">
                                 <ul class="nav flex-column sub-menu">
                                     <c:forEach items="<%=projectAction%>" var="p">
-                                        <li class="nav-item"> <a class="nav-link" href="pages/project/${p.name.toLowerCase()}-project">${p.name}</a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="${p.name.toLowerCase()}-project">${p.name}</a></li>
                                         </c:forEach>
                                 </ul>
                             </div>
@@ -319,147 +319,218 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex flex-wrap justify-content-between">
-                                            <h4 class="card-title mb-3">Project status</h4>
+                                            <h4 class="card-title mb-3">Team Project</h4>
                                         </div>
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            ID
-                                                            <div class="font-weight-bold  mt-1">1 </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="d-flex">
-                                                                <img class="img-sm rounded-circle mb-md-0 mr-2" src="../../images/faces/face30.png" alt="profile image">
-                                                                <div>
-                                                                    <div> Team</div>
-                                                                    <div class="font-weight-bold mt-1">volkswagen</div>
+                                                    <c:forEach items="${listTeam}" var="p">
+                                                        <tr>
+                                                            <td>
+                                                                ID
+                                                                <div class="font-weight-bold  mt-1">${p.id} </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <img class="img-sm rounded-circle mb-md-0 mr-2" src="../../images/faces/face30.png" alt="profile image">
+                                                                    <div>
+                                                                        <div> Team</div>
+                                                                        <div class="font-weight-bold mt-1">${p.title}</div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            Budget
-                                                            <div class="font-weight-bold  mt-1">$2322 </div>
-                                                        </td>
-                                                        <td>
-                                                            Status
-                                                            <div class="font-weight-bold text-success  mt-1">88% </div>
-                                                        </td>
-                                                        <td>
-                                                            Deadline
-                                                            <div class="font-weight-bold  mt-1">07 Nov 2019</div>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex">
-                                                                <img class="img-sm rounded-circle mb-md-0 mr-2" src="../../images/faces/face31.png" alt="profile image">
-                                                                <div>
-                                                                    <div> Company</div>
-                                                                    <div class="font-weight-bold  mt-1">Land Rover</div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            Budget
-                                                            <div class="font-weight-bold  mt-1">$12022 </div>
-                                                        </td>
-                                                        <td>
-                                                            Status
-                                                            <div class="font-weight-bold text-success  mt-1">70% </div>
-                                                        </td>
-                                                        <td>
-                                                            Deadline
-                                                            <div class="font-weight-bold  mt-1">08 Nov 2019</div>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex">
-                                                                <img class="img-sm rounded-circle mb-md-0 mr-2" src="../../images/faces/face32.png" alt="profile image">
-                                                                <div>
-                                                                    <div> Company</div>
-                                                                    <div class="font-weight-bold  mt-1">Bentley </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            Budget
-                                                            <div class="font-weight-bold  mt-1">$8,725</div>
-                                                        </td>
-                                                        <td>
-                                                            Status
-                                                            <div class="font-weight-bold text-success  mt-1">87% </div>
-                                                        </td>
-                                                        <td>
-                                                            Deadline
-                                                            <div class="font-weight-bold  mt-1">11 Jun 2019</div>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex">
-                                                                <img class="img-sm rounded-circle mb-md-0 mr-2" src="../../images/faces/face33.png" alt="profile image">
-                                                                <div>
-                                                                    <div> Company</div>
-                                                                    <div class="font-weight-bold  mt-1">Morgan </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            Budget
-                                                            <div class="font-weight-bold  mt-1">$5,220 </div>
-                                                        </td>
-                                                        <td>
-                                                            Status
-                                                            <div class="font-weight-bold text-success  mt-1">65% </div>
-                                                        </td>
-                                                        <td>
-                                                            Deadline
-                                                            <div class="font-weight-bold  mt-1">26 Oct 2019</div>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex">
-                                                                <img class="img-sm rounded-circle mb-md-0 mr-2" src="../../images/faces/face34.png" alt="profile image">
-                                                                <div>
-                                                                    <div> Company</div>
-                                                                    <div class="font-weight-bold  mt-1">volkswagen</div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            Budget
-                                                            <div class="font-weight-bold  mt-1">$2322 </div>
-                                                        </td>
-                                                        <td>
-                                                            Status
-                                                            <div class="font-weight-bold text-success mt-1">88% </div>
-                                                        </td>
-                                                        <td>
-                                                            Deadline
-                                                            <div class="font-weight-bold  mt-1">07 Nov 2019</div>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                            <td>
+                                                                Status
+                                                                <div class="font-weight-bold text-success  mt-1">${p.status}% </div>
+                                                            </td>
+                                                            <td>
+                                                                Deadline
+                                                                <div class="font-weight-bold  mt-1">${p.plannedEndDate}</div>
+                                                            </td>
+                                                            <td>
+                                                                <a href="single-project?id=${p.id}">
+                                                                    <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
                                                 </tbody>
                                             </table>
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-dark btn-icon-text" data-toggle="modal" data-target="#exampleModalLong1">
+                                                +
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                Add New Project
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <form action="../../add-project" method="post">
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="title" class="col-form-label">
+                                                                        Title:
+                                                                    </label>
+                                                                    <input type="text" class="form-control" id="product-name" name="title">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="team-id" class="col-form-label">
+                                                                        Team ID:
+                                                                    </label>
+                                                                    <input type="text" class="form-control" id="product-name" name="teamId">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="start-date" class="col-form-label">
+                                                                        Start date:
+                                                                    </label>
+                                                                    <input type="text" class="form-control" id="product-name" name="start-date">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="end-date" class="col-form-label">
+                                                                        End date:
+                                                                    </label>
+                                                                    <input type="text" class="form-control" id="product-name" name="end-date">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="description" class="col-form-label">
+                                                                        Description:
+                                                                    </label>
+                                                                    <textarea class="form-control" id="product-details" name="description"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">  
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
+                                                                    Cancel
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary" value="Add">
+                                                                    Add
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 d-flex grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-wrap justify-content-between">
+                                            <h4 class="card-title mb-3">Single Project</h4>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    <c:forEach items="${listSingle}" var="p">
+                                                        <tr>
+                                                            <td>
+                                                                ID
+                                                                <div class="font-weight-bold  mt-1">${p.id} </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <img class="img-sm rounded-circle mb-md-0 mr-2" src="../../images/faces/face30.png" alt="profile image">
+                                                                    <div>
+                                                                        <div> Team</div>
+                                                                        <div class="font-weight-bold mt-1">${p.title}</div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                Status
+                                                                <div class="font-weight-bold text-success  mt-1">${p.status}% </div>
+                                                            </td>
+                                                            <td>
+                                                                Deadline
+                                                                <div class="font-weight-bold  mt-1">${p.plannedEndDate}</div>
+                                                            </td>
+                                                            <td>
+                                                                <a href="single-project?id=${p.id}">
+                                                                    <button type="button" class="btn btn-sm btn-secondary">edit actions</button>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-dark btn-icon-text" data-toggle="modal" data-target="#exampleModalLong2">
+                                                +
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                Add New Project
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <form action="../../add-project" method="post">
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="title" class="col-form-label">
+                                                                        Title:
+                                                                    </label>
+                                                                    <input type="text" class="form-control" id="product-name" name="title">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="team-id" class="col-form-label">
+                                                                        Team ID:
+                                                                    </label>
+                                                                    <input type="text" class="form-control" id="product-name" name="teamId">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="start-date" class="col-form-label">
+                                                                        Start date:
+                                                                    </label>
+                                                                    <input type="text" class="form-control" id="product-name" name="start-date">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="end-date" class="col-form-label">
+                                                                        End date:
+                                                                    </label>
+                                                                    <input type="text" class="form-control" id="product-name" name="end-date">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="description" class="col-form-label">
+                                                                        Description:
+                                                                    </label>
+                                                                    <textarea class="form-control" id="product-details" name="description"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">  
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
+                                                                    Cancel
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary" value="Add">
+                                                                    Add
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

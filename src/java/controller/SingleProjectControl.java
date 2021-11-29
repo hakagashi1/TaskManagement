@@ -6,8 +6,9 @@
 package controller;
 
 import dao.ProjectDAO;
-import dao.UserDAO;
+import dao.TaskDAO;
 import entity.Project;
+import entity.Task;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ZenBook
  */
-public class ManageProjectControl extends HttpServlet {
+public class SingleProjectControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +37,7 @@ public class ManageProjectControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,12 +59,12 @@ public class ManageProjectControl extends HttpServlet {
             response.sendRedirect("../samples/login");
         } else {
             request.setAttribute("user", user);
-            List<Project> listTeam = new ProjectDAO().getTeamProjects();
-            request.setAttribute("listTeam", listTeam);
-            List<Project> listSingle = new ProjectDAO().getSingleProjects();
-            request.setAttribute("listSingle", listSingle);
-//            System.out.println(new UserDAO().convertMili(session.getLastAccessedTime()));
-            request.getRequestDispatcher("manageProject.jsp").forward(request, response);
+            int projectId = Integer.parseInt(request.getParameter("id"));
+            List<Task> tasks = new TaskDAO().getTaskByProjectId(projectId);
+            System.out.println(tasks);
+            request.setAttribute("listT", tasks);
+            request.setAttribute("projectId", projectId);
+            request.getRequestDispatcher("single-project.jsp").forward(request, response);
         }
     }
 

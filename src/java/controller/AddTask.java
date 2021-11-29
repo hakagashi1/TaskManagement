@@ -5,24 +5,18 @@
  */
 package controller;
 
-import dao.ProjectDAO;
-import dao.UserDAO;
-import entity.Project;
-import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ZenBook
  */
-public class ManageProjectControl extends HttpServlet {
+public class AddTask extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +30,18 @@ public class ManageProjectControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AddTask</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AddTask at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,19 +57,7 @@ public class ManageProjectControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("acc");
-        if (user == null) {
-            response.sendRedirect("../samples/login");
-        } else {
-            request.setAttribute("user", user);
-            List<Project> listTeam = new ProjectDAO().getTeamProjects();
-            request.setAttribute("listTeam", listTeam);
-            List<Project> listSingle = new ProjectDAO().getSingleProjects();
-            request.setAttribute("listSingle", listSingle);
-//            System.out.println(new UserDAO().convertMili(session.getLastAccessedTime()));
-            request.getRequestDispatcher("manageProject.jsp").forward(request, response);
-        }
+        
     }
 
     /**
@@ -78,7 +71,8 @@ public class ManageProjectControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        
     }
 
     /**

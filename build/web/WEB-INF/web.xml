@@ -36,6 +36,22 @@
         <servlet-name>ManageTeamControl</servlet-name>
         <servlet-class>controller.ManageTeamControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddProjectControl</servlet-name>
+        <servlet-class>controller.AddProjectControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageTaskControl</servlet-name>
+        <servlet-class>controller.ManageTaskControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SingleProjectControl</servlet-name>
+        <servlet-class>controller.SingleProjectControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddTask</servlet-name>
+        <servlet-class>controller.AddTask</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
         <url-pattern>/pages/samples/login</url-pattern>
@@ -71,6 +87,22 @@
     <servlet-mapping>
         <servlet-name>ManageTeamControl</servlet-name>
         <url-pattern>/manage-team</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProjectControl</servlet-name>
+        <url-pattern>/add-project</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageTaskControl</servlet-name>
+        <url-pattern>/pages/task/manage-task</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SingleProjectControl</servlet-name>
+        <url-pattern>/pages/project/single-project</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTask</servlet-name>
+        <url-pattern>/pages/project/add-task</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
