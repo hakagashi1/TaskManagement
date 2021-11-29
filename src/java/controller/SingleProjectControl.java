@@ -61,7 +61,6 @@ public class SingleProjectControl extends HttpServlet {
             request.setAttribute("user", user);
             int projectId = Integer.parseInt(request.getParameter("id"));
             List<Task> tasks = new TaskDAO().getTaskByProjectId(projectId);
-            System.out.println(tasks);
             request.setAttribute("listT", tasks);
             request.setAttribute("projectId", projectId);
             request.getRequestDispatcher("single-project.jsp").forward(request, response);

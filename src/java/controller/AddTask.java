@@ -5,12 +5,15 @@
  */
 package controller;
 
+import dao.TaskDAO;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -57,7 +60,10 @@ public class AddTask extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        
+        int id = Integer.parseInt(request.getParameter("id"));
+        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        new TaskDAO().deleteTask(id);
+        response.sendRedirect("single-project?id=" + projectId);
     }
 
     /**
@@ -72,7 +78,31 @@ public class AddTask extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        System.out.println("userId: " + userId);
+
+        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        System.out.println("projectId: " + projectId);
         
+        String title = request.getParameter("title");
+        System.out.println("title: " + title);
+        
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("acc");
+        System.out.println(user);
+        int createdBy = user.getId();
+        System.out.println("createdBy: " + createdBy);
+        int updatedBy = user.getId();
+        System.out.println("updatedBy: " + updatedBy);
+
+        String plannedStartDate = request.getParameter("start-date");
+        System.out.println("plannedStartDate: " + plannedStartDate);
+        String plannedEndDate = request.getParameter("end-date");
+        System.out.println("plannedEndDate: " + plannedEndDate);
+        String description = request.getParameter("description");
+        System.out.println("description: " + description);
+        new TaskDAO().addTask(userId, projectId, createdBy, updatedBy, title, description, plannedStartDate, plannedEndDate);
+        response.sendRedirect("single-project?id=" + projectId);
     }
 
     /**

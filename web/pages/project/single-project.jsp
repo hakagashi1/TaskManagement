@@ -367,17 +367,89 @@
                                                             <td>
                                                                 ${t.plannedEndDate}
                                                             </td>
+                                                            <td>
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-outline-secondary btn-icon-text" data-toggle="modal" data-target="#exampleModalLong${t.id}">
+                                                                    Edit
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="exampleModalLong${t.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                                                    Edit Task
+                                                                                </h5>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+
+                                                                            <form action="add-task?projectId=${projectId}" method="post">
+                                                                                <div class="modal-body">
+                                                                                    <div class="form-group">
+                                                                                        <label for="title" class="col-form-label">
+                                                                                            Title:
+                                                                                        </label>
+                                                                                        <input type="text" class="form-control" id="product-name" name="title" value="${t.title}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="user-id" class="col-form-label">
+                                                                                            User ID:
+                                                                                        </label>
+                                                                                        <input type="text" class="form-control" id="product-name" name="userId" value="${t.user.id}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="start-date" class="col-form-label">
+                                                                                            Start date:
+                                                                                        </label>
+                                                                                        <input type="text" class="form-control" id="product-name" name="start-date" value="${t.plannedStartDate}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="end-date" class="col-form-label">
+                                                                                            End date:
+                                                                                        </label>
+                                                                                        <input type="text" class="form-control" id="product-name" name="end-date" value="${t.plannedEndDate}">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="description" class="col-form-label">
+                                                                                            Description:
+                                                                                        </label>
+                                                                                        <textarea class="form-control" id="product-details" name="description">${t.description}</textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-footer">  
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
+                                                                                        Cancel
+                                                                                    </button>
+                                                                                    <button type="submit" class="btn btn-primary" value="Add">
+                                                                                        Add
+                                                                                    </button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <a href="add-task?id=${t.id}&projectId=${projectId}">
+                                                                    <button type="button" class="btn btn-outline-secondary btn-icon-text">
+                                                                        Delete
+                                                                    </button>
+                                                                </a>
+                                                            </td>
                                                         </tr>
                                                     </c:forEach>
                                                 </tbody>
                                             </table>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary btn-rounded btn-icon" data-toggle="modal" data-target="#exampleModalLong1">
+                                            <button type="button" class="btn btn-primary btn-rounded btn-icon" data-toggle="modal" data-target="#exampleModalLong">
                                                 +
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -389,7 +461,7 @@
                                                             </button>
                                                         </div>
 
-                                                        <form action="../../add-task" method="post">
+                                                        <form action="add-task?projectId=${projectId}" method="post">
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="title" class="col-form-label">

@@ -63,7 +63,19 @@ public class TaskDAO extends DBContext {
             ps.setString(7, plannedStartDate);
             ps.setString(8, plannedEndDate);
             ps.executeUpdate();
-        } catch(Exception e) {
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+    public void deleteTask(int id) {
+        String sql = "delete from Task \n"
+                + "where id = ?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
             System.err.println(e);
         }
     }
