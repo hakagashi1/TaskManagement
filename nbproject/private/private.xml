@@ -2,12 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Software%20Engineering/Web/TaskManagement/src/java/entity/Task.java</file>
-            <file>file:/D:/Software%20Engineering/Web/TaskManagement/src/java/controller/AddTask.java</file>
-            <file>file:/D:/Software%20Engineering/Web/TaskManagement/web/pages/project/single-project.jsp</file>
-            <file>file:/D:/Software%20Engineering/Web/TaskManagement/src/java/controller/SingleProjectControl.java</file>
-            <file>file:/D:/Software%20Engineering/Web/TaskManagement/src/java/dao/TaskDAO.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
